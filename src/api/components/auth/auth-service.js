@@ -36,6 +36,7 @@ async function checkLogin(email, password) {
 
   // kalo user tidak ketemu, tetap jalanin pengecekan password pakai dummy
   // biar waktu responnya sama dan hacker ga bisa nebak email mana yang terdaftar
+  const userPass = user ? user.password : '<RANDOM>';
   const loginPassed = await passwordMatched(password, userPass);
 
   if (user && loginPassed) {

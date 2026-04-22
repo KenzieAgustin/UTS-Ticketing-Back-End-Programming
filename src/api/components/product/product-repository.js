@@ -1,4 +1,4 @@
-const Product = require('./product.model');
+const Product = require('../../../models/product-schema');
 
 const findProductById = async (id) => {
     return await Product.findById(id);
@@ -11,4 +11,4 @@ const updateProductStock = async(id, newStock) => {
         {new: true});
 };
 
-module.exports = {findproductById, updateProductStock};
+module.exports = {findProductById, updateProductStock};

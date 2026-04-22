@@ -1,4 +1,4 @@
-const productRepository = require('./product.repository');
+const productRepository = require('./product-repository');
 
 const reduceStockLogic = async (productId, quantity) => {
     const product = await productRepository.findProductById(productId);

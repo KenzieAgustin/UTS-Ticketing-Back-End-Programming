@@ -5,7 +5,7 @@ const pinoHTTP = require('pino-http');
 
 const config = require('./config');
 const logger = require('./logger')('app');
-const routes = require('../api/components/routes');
+const routes = require('../api/routes');
 const { errorResponder, errorTypes } = require('./errors');
 
 const app = express();

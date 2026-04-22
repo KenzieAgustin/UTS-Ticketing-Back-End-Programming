@@ -1,4 +1,4 @@
-const { booking } = require('../../../models/booking-schema');
+const { booking } = require('../../../models');
 
 async function createBooking(userId, movieName, seatNumber, price) {
   return booking.create({

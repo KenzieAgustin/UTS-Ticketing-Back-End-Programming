@@ -1,28 +1,44 @@
 const beverageRepository = require('./beverage-repository');
-const findOrFail = require('../../../utils/findOrFail');
 
-class BeverageService {
-  async getAllBeverages(filter) {
-    return beverageRepository.findAll(filter);
-  }
-
-  async getBeverageById(id) {
-    return findOrFail(beverageRepository, id, 'Beverage');
-  }
-
-  async createBeverage(data) {
-    return beverageRepository.create(data);
-  }
-
-  async updateBeverage(id, data) {
-    await findOrFail(beverageRepository, id, 'Beverage');
-    return beverageRepository.update(id, data);
-  }
-
-  async deleteBeverage(id) {
-    await findOrFail(beverageRepository, id, 'Beverage');
-    await beverageRepository.delete(id);
-  }
+async function getAllBeverages(filter) {
+  return beverageRepository.findAll(filter);
 }
 
-module.exports = new BeverageService();
+async function getBeverageById(id) {
+  const beverage = await beverageRepository.findById(id);
+  if (!beverage) {
+    return null;
+  }
+
+  return beverage;
+}
+
+async function createBeverage(data) {
+  return beverageRepository.create(data);
+}
+
+async function updateBeverage(id, data) {
+  const beverage = await beverageRepository.findById(id);
+  if (!beverage) {
+    return null;
+  }
+
+  return beverageRepository.update(id, data);
+}
+
+async function deleteBeverage(id) {
+  const beverage = await beverageRepository.findById(id);
+  if (!beverage) {
+    return null;
+  }
+
+  await beverageRepository.delete(id);
+}
+
+module.exports = {
+  getAllBeverages,
+  getBeverageById,
+  createBeverage,
+  updateBeverage,
+  deleteBeverage,
+};

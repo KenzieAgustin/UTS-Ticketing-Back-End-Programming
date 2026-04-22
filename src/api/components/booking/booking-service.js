@@ -1,23 +1,19 @@
 const bookingRepository = require('./booking-repository');
 
 async function createBooking(userId, movieName, seatNumber, price) {
-  try {
-    const newBooking = await bookingRepository.createBooking(
-      userId,
-      movieName,
-      seatNumber,
-      price
-    );
+  const newBooking = await bookingRepository.createBooking(
+    userId,
+    movieName,
+    seatNumber,
+    price
+  );
 
-    return {
-      id: newBooking._id,
-      movieName: newBooking.movieName,
-      seatNumber: newBooking.seatNumber,
-      status: 'Yayyy Berhasil',
-    };
-  } catch (error) {
-    return error;
-  }
+  return {
+    id: newBooking._id,
+    movieName: newBooking.movieName,
+    seatNumber: newBooking.seatNumber,
+    status: 'Yayyy Berhasil',
+  };
 }
 
 async function getBooking(id) {

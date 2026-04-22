@@ -15,5 +15,4 @@ module.exports = (mongoose) => {
     });
 
     return mongoose.model('booking', schema);
-}
-
+};

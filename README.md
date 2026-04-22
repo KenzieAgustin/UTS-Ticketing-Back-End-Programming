@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-# UTS-Ticketing-Back-End-Programming
-=======
 # Backend Programming Template (2025)
 
 ## Development Setup
@@ -19,4 +16,3 @@
 2. Create a new folder in `./src/api/components` (if needed). Remember to separate your codes to repositories, services, controllers, and routes.
 3. Add the new route in `./src/api/routes.js`.
 4. Test your new endpoints in the API client app.
->>>>>>> Yohanes

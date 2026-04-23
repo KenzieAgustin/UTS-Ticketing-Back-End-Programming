@@ -12,5 +12,4 @@ async function createShowtime(data) {
   return Showtimes.create(data);
 }
 
-module.exports = { getShowtimes, createShowtime ,deleteShowtime 
-};
+module.exports = { getShowtimes, createShowtime, deleteShowtime };

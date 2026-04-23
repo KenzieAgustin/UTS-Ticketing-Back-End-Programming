@@ -14,11 +14,11 @@ async function deleteShowtime(req, res, next) {
   try {
     const { id } = req.params;
     const deleted = await showtimesService.deleteShowtime(id);
-    
+
     if (!deleted) {
       return res.status(404).json({ message: 'Jadwal tayang tidak ditemukan' });
     }
-    
+
     return res.status(200).json({ message: 'Jadwal tayang berhasil dihapus' });
   } catch (error) {
     next(error);
@@ -34,4 +34,4 @@ async function createShowtime(req, res, next) {
   }
 }
 
-module.exports = { getShowtimes, createShowtime, deleteShowtime};
+module.exports = { getShowtimes, createShowtime, deleteShowtime };

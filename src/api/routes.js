@@ -8,6 +8,7 @@ const books = require('./components/books/books-route');
 const product = require('./components/product/product-route');
 const theathers = require('./components/theathers/theathers-route');
 const showtimes = require('./components/showtimes/showtimes-route');
+const transaction = require('./components/transaction/transaction-route');
 
 module.exports = () => {
   const app = express.Router();
@@ -20,6 +21,7 @@ module.exports = () => {
   books(app);
   booking(app);
   product(app);
+  transaction(app);
 
   return app;
 };

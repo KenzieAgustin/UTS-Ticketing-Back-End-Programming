@@ -17,4 +17,9 @@ async function deleteTheather(id) {
 }
 
 // Update exportnya
-module.exports = { getAllTheathers, getTheatherById, createTheather, deleteTheather };
+module.exports = {
+  getAllTheathers,
+  getTheatherById,
+  createTheather,
+  deleteTheather,
+};

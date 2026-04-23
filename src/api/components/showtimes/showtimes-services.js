@@ -13,5 +13,4 @@ async function createShowtime(data) {
   return showtimesRepo.createShowtime(data);
 }
 
-module.exports = { getShowtimes, createShowtime, deleteShowtime
- };
+module.exports = { getShowtimes, createShowtime, deleteShowtime };

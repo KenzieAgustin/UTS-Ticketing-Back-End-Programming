@@ -7,7 +7,7 @@ module.exports = (app) => {
   route.get('/', theathersController.getTheathers);
   route.get('/:id', theathersController.getTheatherById);
   route.post('/', theathersController.createTheather);
-  
+
   // Baris baru untuk delete
   route.delete('/:id', theathersController.deleteTheather);
 };

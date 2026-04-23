@@ -1,4 +1,4 @@
-const Beverage = require('../../../models/beverage');
+const Beverage = require('../../../models/beverage-schema');
 
 class BeverageRepository {
   async findAll(filter = {}) {

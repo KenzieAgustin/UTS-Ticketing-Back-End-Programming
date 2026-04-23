@@ -48,7 +48,7 @@ async function createUser(request, response, next) {
     const {
       email,
       password,
-      full_name: fullName,
+      name: fullName,
       confirm_password: confirmPassword,
     } = request.body;
 
@@ -107,7 +107,7 @@ async function createUser(request, response, next) {
 // PUT /api/users/me
 async function updateMe(request, response, next) {
   try {
-    const { email, full_name: fullName } = request.body;
+    const { email, name: fullName } = request.body;
 
     const user = await usersService.getUser(request.user._id);
     if (!user) {
@@ -156,7 +156,7 @@ async function updateMe(request, response, next) {
 // PUT /api/users/:id — admin only
 async function updateUser(request, response, next) {
   try {
-    const { email, full_name: fullName } = request.body;
+    const { email, name: fullName } = request.body;
 
     const user = await usersService.getUser(request.params.id);
     if (!user) {

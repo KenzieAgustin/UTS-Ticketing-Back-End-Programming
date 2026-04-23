@@ -1,19 +1,22 @@
-module.exports = (mongoose) => {
-  const schema = new mongoose.Schema({
+const mongoose = require('mongoose');
+
+const transactionSchema = new mongoose.Schema(
+  {
     bookingId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'booking',
-      required: true,
+      ref: 'Booking',
+      required: [true, 'Booking ID is required'],
       unique: true,
     },
     userId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Users',
-      required: true,
+      ref: 'User',
+      required: [true, 'User ID is required'],
     },
     amount: {
       type: Number,
-      required: true,
+      required: [true, 'Amount is required'],
+      min: 0,
     },
     status: {
       type: String,
@@ -33,11 +36,8 @@ module.exports = (mongoose) => {
       type: Date,
       default: null,
     },
-    createdAt: {
-      type: Date,
-      default: Date.now,
-    },
-  });
+  },
+  { timestamps: true }
+);
 
-  return mongoose.model('transaction', schema);
-};
+module.exports = mongoose.model('Transaction', transactionSchema);

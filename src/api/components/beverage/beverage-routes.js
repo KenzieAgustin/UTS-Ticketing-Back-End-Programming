@@ -1,20 +1,27 @@
 const express = require('express');
-const beverageController = require('./beverage-controller');
 
-const route = express.Router();
+const router = express.Router();
+const beverageController = require('./beverage-controller');
+const { authMiddleware, adminMiddleware } = require('../../middlewares');
 
 module.exports = (app) => {
-  app.use('/beverages', route);
+  app.use('/beverages', router);
 
-  // Get all beverages (supports ?category=&isAvailable=)
-  route.get('/', beverageController.getAll);
+  // Public
+  router.get('/', beverageController.getAll);
 
-  // Create beverage (Admin)
-  route.post('/', beverageController.create);
-
-  // Update beverage (Admin)
-  route.patch('/:id', beverageController.update);
-
-  // Delete beverage (Admin)
-  route.delete('/:id', beverageController.remove);
+  // Admin only
+  router.post('/', authMiddleware, adminMiddleware, beverageController.create);
+  router.patch(
+    '/:id',
+    authMiddleware,
+    adminMiddleware,
+    beverageController.update
+  );
+  router.delete(
+    '/:id',
+    authMiddleware,
+    adminMiddleware,
+    beverageController.remove
+  );
 };

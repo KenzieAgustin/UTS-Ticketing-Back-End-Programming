@@ -50,6 +50,30 @@ async function update(request, response, next) {
   }
 }
 
+async function partialUpdate(request, response, next) {
+  try {
+    const movie = await movieService.updateMovie(
+      request.params.id,
+      request.body
+    );
+
+    if (!movie) {
+      return response.status(404).json({
+        success: false,
+        message: 'Movie not found',
+      });
+    }
+
+    return response.status(200).json({
+      success: true,
+      message: 'Movie partially updated successfully',
+      data: movie,
+    });
+  } catch (error) {
+    return next(error);
+  }
+}
+
 async function remove(request, response, next) {
   try {
     await movieService.deleteMovie(request.params.id);
@@ -66,5 +90,6 @@ module.exports = {
   getOne,
   create,
   update,
+  partialUpdate,
   remove,
 };

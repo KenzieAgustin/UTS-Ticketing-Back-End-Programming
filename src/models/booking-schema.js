@@ -1,13 +1,27 @@
-module.exports = (mongoose) => {
-  const schema = new mongoose.Schema({
+const mongoose = require('mongoose');
+
+const bookingSchema = new mongoose.Schema(
+  {
     userId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'users',
-      required: true,
+      ref: 'User',
+      required: [true, 'User ID is required'],
     },
-    movieName: String,
-    seatNumber: String,
-    price: Number,
+    movieName: {
+      type: String,
+      required: [true, 'Movie name is required'],
+      trim: true,
+    },
+    seatNumber: {
+      type: String,
+      required: [true, 'Seat number is required'],
+      trim: true,
+    },
+    price: {
+      type: Number,
+      required: [true, 'Price is required'],
+      min: 0,
+    },
     bookingDate: {
       type: Date,
       default: Date.now,
@@ -17,7 +31,8 @@ module.exports = (mongoose) => {
       enum: ['LOCKED', 'CONFIRMED', 'CANCELLED'],
       default: 'CONFIRMED',
     },
-  });
+  },
+  { timestamps: true }
+);
 
-  return mongoose.model('booking', schema);
-};
+module.exports = mongoose.model('Booking', bookingSchema);

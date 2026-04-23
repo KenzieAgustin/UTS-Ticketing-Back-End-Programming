@@ -1,24 +1,29 @@
 const express = require('express');
-const movieController = require('./movie-controller');
 
-const route = express.Router();
+const router = express.Router();
+const movieController = require('./movie-controller');
+const { authMiddleware, adminMiddleware } = require('../../middlewares');
 
 module.exports = (app) => {
-  app.use('/movies', route);
+  app.use('/movies', router);
 
-  // Get all movies (supports ?genre=&status=)
-  route.get('/', movieController.getAll);
+  // Public
+  router.get('/', movieController.getAll);
+  router.get('/:id', movieController.getOne);
 
-  // Get single movie detail
-  route.get('/:id', movieController.getOne);
-
-  // Create movie (Admin)
-  route.post('/', movieController.create);
-
-  // Update movie info/poster (Admin)
-  route.put('/:id', movieController.update);
-  route.patch('/:id', movieController.update);
-
-  // Delete movie (Admin)
-  route.delete('/:id', movieController.remove);
+  // Admin only
+  router.post('/', authMiddleware, adminMiddleware, movieController.create);
+  router.put('/:id', authMiddleware, adminMiddleware, movieController.update);
+  router.patch(
+    '/:id',
+    authMiddleware,
+    adminMiddleware,
+    movieController.partialUpdate
+  );
+  router.delete(
+    '/:id',
+    authMiddleware,
+    adminMiddleware,
+    movieController.remove
+  );
 };

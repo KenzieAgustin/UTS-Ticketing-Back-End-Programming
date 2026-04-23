@@ -1,6 +1,6 @@
 node_modules
-desktop.ini
 .env
+desktop.ini
 .DS_Store
 .eslintcache
 .npm

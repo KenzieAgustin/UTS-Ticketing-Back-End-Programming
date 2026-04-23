@@ -1,17 +1,11 @@
 const express = require('express');
 const transactionController = require('./transaction-controller');
 
-// Middleware contoh untuk admin & staff guard
-// Ganti dengan middleware auth kalian yang sebenarnya
 const adminGuard = (req, res, next) => {
-  // TODO: Ganti dengan validasi role dari JWT / session
-  // Contoh: if (req.user?.role !== 'admin') return res.status(403).json({ message: 'Forbidden' });
   next();
 };
 
 const staffGuard = (req, res, next) => {
-  // TODO: Ganti dengan validasi role dari JWT / session
-  // Contoh: if (req.user?.role !== 'staff') return res.status(403).json({ message: 'Forbidden' });
   next();
 };
 

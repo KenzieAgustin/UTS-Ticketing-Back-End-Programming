@@ -1,6 +1,7 @@
 const express = require('express');
 
 const auth = require('./components/auth/auth-route');
+const users = require('./components/users/users-route');
 const movie = require('./components/movies/movie-routes');
 const beverage = require('./components/beverage/beverage-routes');
 const booking = require('./components/booking/booking-route');
@@ -14,6 +15,7 @@ module.exports = () => {
   const app = express.Router();
 
   auth(app);
+  users(app);
   theathers(app);
   showtimes(app);
   beverage(app);

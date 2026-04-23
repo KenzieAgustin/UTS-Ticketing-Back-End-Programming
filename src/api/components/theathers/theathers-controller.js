@@ -42,4 +42,9 @@ async function deleteTheather(req, res, next) {
 }
 
 // Update exportnya
-module.exports = { getTheathers, getTheatherById, createTheather, deleteTheather };
+module.exports = {
+  getTheathers,
+  getTheatherById,
+  createTheather,
+  deleteTheather,
+};

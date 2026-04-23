@@ -35,8 +35,45 @@ async function getMyTicket(request, response, next) {
   }
 }
 
+async function applyPromo(request, response, next) {
+  try {
+    const { bookingId, promoCode } = request.body;
+    const result = await bookingService.applyPromo(bookingId, promoCode);
+    return response.status(200).json(result);
+  } catch (error) {
+    return next(error);
+  }
+}
+
+async function lockSeats(request, response, next) {
+  try {
+    const { userId, movieName, seatNumber } = request.body;
+    const result = await bookingService.lockSeats(
+      userId,
+      movieName,
+      seatNumber
+    );
+    return response.status(200).json(result);
+  } catch (error) {
+    return next(error);
+  }
+}
+
+async function unlockSeats(request, response, next) {
+  try {
+    const { movieName, seatNumber } = request.body;
+    const result = await bookingService.unlockSeats(movieName, seatNumber);
+    return response.status(200).json(result);
+  } catch (error) {
+    return next(error);
+  }
+}
+
 module.exports = {
   createBooking,
   getBooking,
   getMyTicket,
+  applyPromo,
+  lockSeats,
+  unlockSeats,
 };

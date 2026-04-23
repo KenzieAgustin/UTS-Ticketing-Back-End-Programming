@@ -42,9 +42,65 @@ async function getMyTicket(userId) {
     date: ticket.bookingDate,
   }));
 }
+async function applyPromo(bookingId, promoCode) {
+  const booking = await bookingRepository.getBooking(bookingId);
+  if (!booking) {
+    throw new Error('Booking tidak ditemukan');
+  }
+
+  let discount = 0;
+  if (promoCode === 'PROMO10K') {
+    discount = 10000;
+  } else {
+    throw new Error('Kode promo tidak valid');
+  }
+
+  const newPrice = Math.max(0, booking.price - discount);
+  const updatedBooking = await bookingRepository.updateBookingPrice(
+    bookingId,
+    newPrice
+  );
+
+  return {
+    success: true,
+    message: 'Promo berhasil diaplikasikan',
+    originalPrice: booking.price,
+    newPrice: updatedBooking.price,
+  };
+}
+
+async function lockSeats(userId, movieName, seatNumber) {
+  const lockedSeat = await bookingRepository.lockSeat(
+    userId,
+    movieName,
+    seatNumber
+  );
+
+  return {
+    success: true,
+    message: `Kursi ${seatNumber} untuk film ${movieName} berhasil dikunci sementara`,
+    data: lockedSeat,
+  };
+}
+
+async function unlockSeats(movieName, seatNumber) {
+  const unlocked = await bookingRepository.unlockSeat(movieName, seatNumber);
+
+  if (unlocked.deletedCount === 0) {
+    throw new Error('Gagal membuka kursi, mungkin kursi tidak sedang dikunci');
+  }
+
+  return {
+    success: true,
+    message: `Kursi ${seatNumber} berhasil dibuka kembali`,
+  };
+}
 
 module.exports = {
   createBooking,
   getBooking,
   getMyTicket,
+  applyPromo,
+  lockSeats,
+  unlockSeats,
 };

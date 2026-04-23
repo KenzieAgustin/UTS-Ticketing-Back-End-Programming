@@ -12,6 +12,11 @@ module.exports = (mongoose) => {
       type: Date,
       default: Date.now,
     },
+    status: {
+      type: String,
+      enum: ['LOCKED', 'CONFIRMED', 'CANCELLED'],
+      default: 'CONFIRMED',
+    },
   });
 
   return mongoose.model('booking', schema);

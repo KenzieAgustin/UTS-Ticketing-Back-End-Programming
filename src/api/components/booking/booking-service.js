@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 const bookingRepository = require('./booking-repository');
 
 async function createBooking(userId, movieName, seatNumber, price) {
@@ -35,6 +36,7 @@ async function getBooking(id) {
 async function getMyTicket(userId) {
   const ticket = await bookingRepository.getMyTicket(userId);
 
+  // eslint-disable-next-line no-shadow
   return ticket.map((ticket) => ({
     bookingId: ticket._id,
     event: ticket.movieName,

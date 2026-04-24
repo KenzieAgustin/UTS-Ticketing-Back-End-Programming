@@ -1,3 +1,4 @@
+/* eslint-disable class-methods-use-this */
 const Beverage = require('../../../models/beverage-schema');
 
 class BeverageRepository {

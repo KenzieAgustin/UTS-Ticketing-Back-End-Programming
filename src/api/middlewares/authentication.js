@@ -1,7 +1,7 @@
 const passport = require('passport');
 const passportJWT = require('passport-jwt');
 
-const { Users } = require('../../models');
+const Users = require('../../models/users-schema');
 
 passport.use(
   'user',

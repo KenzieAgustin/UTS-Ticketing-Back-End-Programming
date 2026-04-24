@@ -1,11 +1,11 @@
-const { Users } = require('../../../models');
+const User = require('../../../models/users-schema');
 
 async function getUserByEmail(email) {
-  return Users.findOne({ email });
+  return User.findOne({ email });
 }
 
 async function createUser(name, email, hashedPassword) {
-  return Users.create({ name, email, password: hashedPassword, role: 'user' });
+  return User.create({ name, email, password: hashedPassword, role: 'user' });
 }
 
 module.exports = {

@@ -1,4 +1,4 @@
-const { Theathers } = require('../../../models'); // Memanggil index.js di folder models
+const Theathers = require('../../../models/theathers-schema'); // Memanggil index.js di folder models
 
 async function getAllTheathers() {
   return Theathers.find();

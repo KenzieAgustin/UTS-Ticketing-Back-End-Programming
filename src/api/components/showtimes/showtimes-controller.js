@@ -1,7 +1,9 @@
+/* eslint-disable consistent-return */
 const showtimesService = require('./showtimes-services');
 
 async function getShowtimes(req, res, next) {
   try {
+    // eslint-disable-next-line camelcase
     const { theater_id } = req.query; // Akses via: /api/showtimes?theater_id=ID
     const data = await showtimesService.getShowtimes(theater_id);
     return res.status(200).json(data);

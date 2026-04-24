@@ -1,4 +1,5 @@
-const { transaction, booking, ticket } = require('../../../models');
+// eslint-disable-next-line prettier/prettier
+const { transaction, booking, ticket  } = require('../../../models/transaction-schema');
 
 async function findTransactionByBookingId(bookingId) {
   return transaction.findOne({ bookingId });

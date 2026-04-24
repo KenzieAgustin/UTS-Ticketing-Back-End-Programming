@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 const usersService = require('./users-service');
 const { errorResponder, errorTypes } = require('../../../core/errors');
 const { hashPassword, passwordMatched } = require('../../../utils/password');
@@ -15,6 +16,7 @@ async function getUsers(request, response, next) {
 // GET /api/users/me
 async function getMe(request, response, next) {
   try {
+    // eslint-disable-next-line no-underscore-dangle
     const user = await usersService.getUser(request.user._id);
 
     if (!user) {

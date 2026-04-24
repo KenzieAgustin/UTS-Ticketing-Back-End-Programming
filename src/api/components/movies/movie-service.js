@@ -26,6 +26,7 @@ async function updateMovie(id, data) {
   return movieRepository.update(id, data);
 }
 
+// eslint-disable-next-line consistent-return
 async function deleteMovie(id) {
   const movie = await movieRepository.findById(id);
   if (!movie) {

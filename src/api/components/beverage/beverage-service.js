@@ -26,6 +26,7 @@ async function updateBeverage(id, data) {
   return beverageRepository.update(id, data);
 }
 
+// eslint-disable-next-line consistent-return
 async function deleteBeverage(id) {
   const beverage = await beverageRepository.findById(id);
   if (!beverage) {

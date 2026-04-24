@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 const theathersService = require('./theathers-services');
 
 async function getTheathers(req, res, next) {

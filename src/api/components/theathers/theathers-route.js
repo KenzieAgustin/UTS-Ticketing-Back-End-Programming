@@ -1,6 +1,7 @@
 const theathersController = require('./theathers-controller');
 
 module.exports = (app) => {
+  // eslint-disable-next-line global-require
   const route = require('express').Router();
   app.use('/theathers', route);
 

@@ -1,3 +1,5 @@
+/* eslint-disable no-return-await */
+/* eslint-disable class-methods-use-this */
 const Movie = require('../../../models/movie-schema');
 
 class MovieRepository {

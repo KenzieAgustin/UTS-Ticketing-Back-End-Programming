@@ -1,6 +1,7 @@
 const showtimesController = require('./showtimes-controller');
 
 module.exports = (app) => {
+  // eslint-disable-next-line global-require
   const route = require('express').Router();
   app.use('/showtimes', route);
 
